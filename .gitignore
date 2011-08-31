@@ -1,0 +1,5 @@
+tmp/*
+log/*
+db/*.sqlite3
+doc/*
+config/deploy.rb
