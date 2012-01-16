@@ -1,6 +1,6 @@
 <%= form_tag checker_url, :method => :get do %>
   <%= label_tag :statement, 'Cron statement' %>
-  <%= text_field_tag :statement %>
+  <%= text_field_tag :statement, params[:statement] %>
 
   <%= submit_tag 'check' %>
 <% end -%>
