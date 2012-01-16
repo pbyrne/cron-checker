@@ -19,6 +19,8 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'guard'
   gem 'guard-rspec'
+  gem 'rb-fsevent'
+  gem 'ruby_gntp'
 end
 
 # gem 'jquery-rails'
