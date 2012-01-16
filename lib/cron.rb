@@ -10,16 +10,16 @@ class Cron
   attr :command, true
   attr :valid
   attr :english, true
-  
+
   # aliasing the Date:: arrays for ease of use
   MONTHNAMES = Date::MONTHNAMES
   ABBR_MONTHNAMES = Date::ABBR_MONTHNAMES
   DAYNAMES = Date::DAYNAMES
   ABBR_DAYNAMES = Date::ABBR_DAYNAMES
-  
+
   # The list of accepted special schedule flags
   SPECIAL_SCHEDULES = %w(@reboot @hourly @daily @midnight @monthly @yearly @annually)
-  
+
   # common regexes
   # just a number, like '5', '10', or '30'
   NUMBER = /^\d+$/
@@ -33,21 +33,21 @@ class Cron
   STEPS = /^\*\/\d+$/
   # number step definitions, like '1-10/2' or '7-12/3'
   NUMBER_STEPS = /^\d+\-\d+\/\d+$/
-  
+
   def initialize(statement)
     @statement = statement
     @valid = false
     @minute = @hour = @dom = @month = @dow = @command = nil
     @english = {}
-    
+
     parse_statement
   end
-  
+
   def parse_statement
     @statement_fragments = statement.split
     if SPECIAL_SCHEDULES.include? statement_fragments[0]
       @valid = true
-      
+
       @command = statement_fragments[1..-1].join(' ')
       case statement_fragments[0]
       when "@reboot"
@@ -62,52 +62,52 @@ class Cron
       when "@daily", "@midnight"
         @minute = @hour = "0"
         @dom = @month = @dow = "*"
-        
+
         english[:time] = plain_english_time
         english[:date] = plain_english_date
       when "@monthly"
         @minute = @hour = "0"
         @dom = "1"
         @month = @dow = "*"
-        
+
         english[:time] = plain_english_time
         english[:date] = plain_english_date
       when "@yearly", "@annually"
         @minute = @hour = "0"
         @dom = @month = "1"
         @dow = "*"
-        
+
         english[:time] = plain_english_time
         english[:date] = plain_english_date
-      end        
+      end
     elsif statement_fragments.size >= 6
       # initially supposing it's valid, will override if english parsing proves otherwise
       @valid = true
-      
+
       @minute = statement_fragments[0]
       @hour = statement_fragments[1]
       @dom = statement_fragments[2]
       @month = statement_fragments[3]
       @dow = statement_fragments[4]
-      @command = statement_fragments[5..-1].join(' ')      
-      
+      @command = statement_fragments[5..-1].join(' ')
+
       english[:time] = plain_english_time
       english[:date] = plain_english_date
     end
-    
+
   end
-  
+
   def valid?
     @valid
   end
-  
+
   def plain_english
     "The command <code>#{command}</code> will execute #{english[:time].blank? ? '' : english[:time] + ' '}#{english[:date]}."
   end
-  
+
   def plain_english_time
     result = ''
-    
+
     if minute =~ NUMBER && hour =~ NUMBER
       h = hour.to_i >= 12 ? hour.to_i - 12 : hour.to_i
       m = minute.rjust(2, '0')
@@ -139,7 +139,7 @@ class Cron
       else
         @valid = false
       end
-      
+
       if hour == "*"
         result << "every hour on"
       elsif hour =~ NUMBER
@@ -166,14 +166,14 @@ class Cron
         @valid = false
       end
     end
-    
+
     result
   end
-  
+
   def plain_english_date
     result = ''
     # "every day of every month."
-    
+
     if dom == '*'
       if dow == '*'
         result << "every day "
@@ -222,7 +222,7 @@ class Cron
       else
         @valid = false
       end
-      
+
       if dow == '*'
         # don't do much.
       elsif dow =~ NUMBER
@@ -242,7 +242,7 @@ class Cron
         # the list is invalid if any of the numbers aren't in DAYNAMES, which sould result in "–Mon" or "Tue–" or "–"
         if numbers.select{|x| x.starts_or_ends_with?("–")}.size > 0
           @valid = false
-        else 
+        else
           days << "every #{numbers.to_sentence} "
         end
       elsif dow =~ NUMBER_STEPS
@@ -251,10 +251,10 @@ class Cron
       else
         @valid = false
       end
-      
+
       result << days.join("and ")
     end
-    
+
     if month == '*'
       result << "of every month"
     elsif ABBR_MONTHNAMES.include? month.titlecase
@@ -286,7 +286,7 @@ class Cron
     else
       @valid = false
     end
-    
+
     result
   end
 end
