@@ -1,4 +1,8 @@
 CronChecker::Application.routes.draw do
+  get "checker/index"
+
+  get "checker/check"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
