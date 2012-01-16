@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class Cron
   attr :statement, true
   attr :statement_fragments
