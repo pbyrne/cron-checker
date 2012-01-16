@@ -1,0 +1,78 @@
+body, input {
+  font-family: Trebuchet, "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+  font-size: 24px;
+  font-weight: normal;
+  line-height: 36px;
+}
+
+/* Naive Reset */
+div, h1, h2, h3, form, label, input, p, ul {
+  /* font stack used with permission: http://unitinteractive.com/blog/2008/06/26/better-css-font-stacks/ */
+  margin: 0px 0px 36px;
+  padding: 0px;
+}
+
+/* Page */
+body {
+  background-color: #fff;
+  color: #333;
+  /* 9 60px columns with 8 20px gutters */
+  width: 700px;
+  margin: 36px auto;
+}
+
+a {
+  color: #00c;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Branding */
+h1 {
+  font-weight: bold;
+  text-align: center;
+  margin: 0px 0px 36px;
+}
+
+h1 a {
+  color: #000;
+  font-family: Consolas, "Courier New", Courier, monospace;
+  font-size: 48px;
+  line-height: 72px;
+  text-decoration: none;
+}
+
+/* Checker form */
+form {
+  text-align: center;
+  margin: 0px 0px 36px;
+}
+
+label {
+  display: none;
+}
+
+div.main,
+div.actions {
+  display: inline;
+}
+
+h3 {
+  font-weight: bold;
+}
+
+ul {
+  margin: 0px 0px 0px 25px;
+}
+
+/* Site info */
+footer {
+  color: #666;
+  font-size: 12px;
+  margin: 72px 0px 0px;
+  text-align: center;
+}
