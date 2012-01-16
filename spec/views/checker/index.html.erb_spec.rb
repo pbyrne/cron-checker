@@ -14,4 +14,8 @@ describe "checker/index.html.erb" do
     rendered.should have_selector 'div.exmp h2'
     rendered.should have_selector 'div.exmp a[href*=check]'
   end
+
+  it "should contain the checker form" do
+    rendered.should render_template('form')
+  end
 end
