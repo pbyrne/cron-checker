@@ -16,12 +16,17 @@ group :assets do
 end
 
 group :development, :test do
+  # for testing
   gem 'rspec-rails'
   gem 'guard'
   gem 'guard-rspec'
   gem 'rb-fsevent'
   gem 'ruby_gntp'
   gem 'capybara'
+
+  # for deploying
+  gem 'heroku'
+  gem 'kumade'
 end
 
 # gem 'jquery-rails'
