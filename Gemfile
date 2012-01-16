@@ -21,6 +21,7 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'rb-fsevent'
   gem 'ruby_gntp'
+  gem 'capybara'
 end
 
 # gem 'jquery-rails'
