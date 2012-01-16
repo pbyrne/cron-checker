@@ -154,7 +154,7 @@ describe Cron do
     it "should also handle @hourly" do
       @c = Cron.new("@hourly echo 'hello, world'")
 
-      @c.plain_english.should == "The command <code>echo 'hello, world'</code> will execute every hour on every day of every month."
+      @c.plain_english.should == "The command <code>echo 'hello, world'</code> will execute the 0th minute of every hour on every day of every month."
     end
 
     it "should also handle @daily" do
