@@ -11,4 +11,12 @@ require 'spec_helper'
 #   end
 # end
 describe CheckerHelper do
+  describe "#link_to_cron(statement)" do
+    let(:statement) { "0 0 * * * some_report.sh" }
+
+    it "returns a link to the cron check" do
+      helper.should_receive(:link_to).with(statement, checker_url(:statement => statement))
+      helper.link_to_cron(statement)
+    end
+  end
 end
