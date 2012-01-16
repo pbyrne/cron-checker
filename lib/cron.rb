@@ -102,7 +102,7 @@ class Cron
   end
 
   def to_s
-    "The command <code>#{command}</code> will execute #{english[:time].blank? ? '' : english[:time] + ' '}#{english[:date]}."
+    "The command #{command} will execute #{english[:time].blank? ? '' : english[:time] + ' '}#{english[:date]}."
   end
 
   def plain_english_time
