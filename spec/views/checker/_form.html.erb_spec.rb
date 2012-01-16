@@ -21,6 +21,6 @@ describe "checker/_form.html.erb" do
   end
 
   it "should have a submit button" do
-    rendered.should have_selector "form input[type=submit][value=check]"
+    rendered.should have_selector "form input[type=submit][value=Check]"
   end
 end
