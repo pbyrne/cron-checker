@@ -1,6 +1,9 @@
 require File.expand_path('../boot', __FILE__)
 
-require 'rails/all'
+# avoiding "require 'rails/all'" since I'm not using ActiveRecord or
+# ActionMailer or built-in Test::Unit.
+require "action_controller/railtie"
+require "sprockets/railtie"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
