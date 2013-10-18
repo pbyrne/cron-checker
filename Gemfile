@@ -30,6 +30,7 @@ group :doc do
 end
 
 group :development, :test do
-  gem 'rspec-rails'
   gem 'capybara'
+  gem 'rspec-rails'
+  gem 'simplecov', require: false
 end
