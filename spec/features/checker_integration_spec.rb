@@ -29,15 +29,15 @@ describe "checking cron syntax" do
   end
 
   def expect_cron_explaination
-    expect(page).to have_content("The command <pre>#{command}</pre> will execute")
+    expect(page).to have_content("The command #{command} will execute")
     expect(page).to have_content("at 12:00am on every day of the month")
   end
 
   def expect_invalid_cron_statement
-    pending
+    expect(page).to have_content("Invalid cron statement '#{invalid_statement}'.")
   end
 
   def expect_missing_cron_statement
-    pending
+    expect(page).to have_content("You must provide a cron statement.")
   end
 end

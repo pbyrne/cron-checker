@@ -1,0 +1,8 @@
+- if @cron.valid?
+  %p
+    The command
+    %pre= @cron.command
+    will execute
+    = @cron.schedule_description
+- else
+
