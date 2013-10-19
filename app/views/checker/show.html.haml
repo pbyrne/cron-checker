@@ -1,10 +1,8 @@
 = render 'shared/form'
 
-- if @cron.valid?
-  %p
-    The command
-    %code= @cron.command
-    will execute
-    = @cron.schedule_description
-- else
+%p
+  The command
+  %code= @cron.command
+  will execute
+  = @cron.schedule_description
 
