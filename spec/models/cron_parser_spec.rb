@@ -35,8 +35,21 @@ describe CronParser do
   end
 
   context "#cron" do
-    it "returns a new Cron instance for traditional schedules"
-    it "returns a new Cron instance for special schedule commands"
+    it "returns a new Cron instance for traditional schedules" do
+      cron = CronParser.new("1 2 3 4 5 #{command}").cron
+      expect(cron.minute).to eq("1")
+      expect(cron.hour).to eq("2")
+      expect(cron.day_of_month).to eq("3")
+      expect(cron.month).to eq("4")
+      expect(cron.day_of_week).to eq("5")
+      expect(cron.command).to eq(command)
+    end
+
+    it "returns a new Cron instance for special schedule commands" do
+      cron = CronParser.new("@reboot #{command}").cron
+      expect(cron.command).to eq(command)
+      expect(cron.schedule_keyword).to eq("@reboot")
+    end
 
     it "raises an exception for an invalid statement" do
       subject.statement = "asdf"

@@ -8,15 +8,14 @@ class CronParser
   end
 
   def valid?
-    return false unless statement.present?
-    return false unless command.present?
-    true
+    statement.present? && command.present?
   end
 
   def cron
     raise MissingStatement unless statement.present?
     raise InvalidStatement unless valid?
-    @cron ||= Cron.new
+
+    Cron.new(cron_attributes)
   end
 
 private
@@ -34,6 +33,24 @@ private
       statement_fragments[1..-1]
     else
       statement_fragments[5..-1]
+    end
+  end
+
+  def cron_attributes
+    if special_schedule?
+      {
+        schedule_keyword: statement_fragments[0],
+        command: command,
+      }
+    else
+      {
+        minute: statement_fragments[0],
+        hour: statement_fragments[1],
+        day_of_month: statement_fragments[2],
+        month: statement_fragments[3],
+        day_of_week: statement_fragments[4],
+        command: command,
+      }
     end
   end
 
