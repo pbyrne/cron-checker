@@ -4,7 +4,7 @@ class CheckerController < ApplicationController
 
   def show
     if params[:statement].present?
-      @cron = Cron.new(params[:statement])
+      @cron = CronParser.new(params[:statement]).call
     else
       flash[:error] = "You must provide a cron statement."
       redirect_to root_path

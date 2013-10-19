@@ -1,10 +1,4 @@
 class Cron
-  attr_accessor :statement
-
-  def initialize(statement)
-    self.statement = statement
-  end
-
   def command
     "./foo"
   end
