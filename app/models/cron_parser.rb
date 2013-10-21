@@ -29,11 +29,9 @@ private
   end
 
   def command
-    if special_schedule?
-      statement_fragments[1..-1]
-    else
-      statement_fragments[5..-1]
-    end
+    command_position = special_schedule? ? 1 : 5
+
+    Array(statement_fragments[command_position..-1]).join(" ")
   end
 
   def cron_attributes

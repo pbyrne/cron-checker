@@ -6,14 +6,10 @@ class Cron
     :schedule_keyword
 
 
-  def initialize(attrs)
+  def initialize(attrs = {})
     attrs.each do |key, value|
       self.send("#{key}=", value)
     end
-  end
-
-  def command
-    "./foo"
   end
 
   def schedule_description
