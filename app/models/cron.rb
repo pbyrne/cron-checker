@@ -13,6 +13,12 @@ class Cron
   end
 
   def schedule_description
-    "at 12:00am on every day of the month"
+    if schedule_keyword == "@reboot"
+      "when the computer reboots"
+    elsif schedule_keyword
+      Cron.new.schedule_description
+    else
+      "at 12:00am on every day of the month"
+    end
   end
 end
