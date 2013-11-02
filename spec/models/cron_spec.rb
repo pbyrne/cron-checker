@@ -22,7 +22,23 @@ describe Cron do
   end
 
   context "#schedule_description" do
-    it "properly handles vanilla crons"
+    it "properly handles wildcards" do
+      cron = Cron.new(minute: "*", hour: "*", day_of_month: "*", month: "*", day_of_week: "*", command: command)
+      description = cron.schedule_description
+      expect(description).to match /every minute/
+      expect(description).to match /every hour/
+      expect(description).to match /every day/
+    end
+
+    it "properly handles vanilla crons" do
+      cron = Cron.new(minute: "1", hour: "2", day_of_month: "3", month: "4", day_of_week: "5", command: command)
+      description = cron.schedule_description
+      expect(description).to match /02:01/
+      expect(description).to match /3rd of/
+      expect(description).to match /April/
+      expect(description).to match /Fridays/
+    end
+
     it "properly handles ranges"
     it "properly handles modulo"
 
