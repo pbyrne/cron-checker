@@ -39,7 +39,7 @@ describe Cron do
     it "properly handles widcard hours but not minutes" do
       cron = Cron.new(minute: "2", hour: "*", day_of_month: "*", month: "*", day_of_week: "*", command: command)
       description = cron.schedule_description
-      expect(description).to match /the 1st minute of every hour/
+      expect(description).to match /the 2nd minute of every hour/
     end
 
     it "properly handles widcard days but not months" do
