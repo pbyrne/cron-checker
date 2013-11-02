@@ -30,7 +30,7 @@ describe "checking cron syntax" do
 
   def expect_cron_explaination
     expect(page).to have_content("The command #{command} will execute")
-    expect(page).to have_content("at 12:00am on every day of the month")
+    expect(page).to have_content("at 12:00am every day")
   end
 
   def expect_invalid_cron_statement

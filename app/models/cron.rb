@@ -1,3 +1,6 @@
+require "date"
+require "time"
+
 class Cron
   attr_accessor :command,
     :minute, :hour,
@@ -26,8 +29,6 @@ class Cron
           {minute: "0", hour: "0", day_of_month: "*", month: "*"}
         when "@monthly"
           {minute: "0", hour: "0", day_of_month: "1", month: "*"}
-        else
-          {}
         end
       Cron.new(options.merge(command: command, day_of_week: "*")).schedule_description
     else
@@ -40,8 +41,16 @@ private
   def time_fragment
     if minute == "*" and hour == "*"
       "every minute of every hour of"
+    elsif minute == "*"
+      repr = "2013-01-01 #{hour}:00"
+      format = "%l%P" # 01pm
+      "every minute of #{Time.parse(repr).strftime(format)}"
+    elsif hour == "*"
+      "the #{ordinalize(minute)} minute of every hour"
     else
-      "at #{hour.to_s.rjust(2, "0")}:#{minute.to_s.rjust(2, "0")}"
+      repr = "2013-01-01 #{hour}:#{minute}"
+      format = "%l:%M%P" # 1:23pm
+      "at #{Time.parse(repr).strftime(format)}"
     end
   end
 

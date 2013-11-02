@@ -30,10 +30,28 @@ describe Cron do
       expect(description).to match /every day/
     end
 
+    it "properly handles wildcard minutes but not hours" do
+      cron = Cron.new(minute: "*", hour: "1", day_of_month: "*", month: "*", day_of_week: "*", command: command)
+      description = cron.schedule_description
+      expect(description).to match /every minute of  1am/
+    end
+
+    it "properly handles widcard hours but not minutes" do
+      cron = Cron.new(minute: "2", hour: "*", day_of_month: "*", month: "*", day_of_week: "*", command: command)
+      description = cron.schedule_description
+      expect(description).to match /the 1st minute of every hour/
+    end
+
+    it "properly handles widcard days but not months" do
+      cron = Cron.new(minute: "*", hour: "*", day_of_month: "*", month: "2", day_of_week: "*", command: command)
+      description = cron.schedule_description
+      expect(description).to match /every day of February/
+    end
+
     it "properly handles vanilla crons" do
       cron = Cron.new(minute: "1", hour: "2", day_of_month: "3", month: "4", day_of_week: "5", command: command)
       description = cron.schedule_description
-      expect(description).to match /02:01/
+      expect(description).to match /2:01/
       expect(description).to match /3rd of/
       expect(description).to match /April/
       expect(description).to match /Fridays/
