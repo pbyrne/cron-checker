@@ -68,8 +68,16 @@ describe Cron do
         expect(cron.schedule_description).to match(/the 1st minute of 2am through 3am/)
       end
 
-      it "handles ranges in month"
-      it "handles ranges in days of month"
+      it "handles ranges in days of month" do
+        cron = Cron.new(day_of_month: "4-5", month: "1")
+        expect(cron.schedule_description).to match(/the 4th through 5th of January/)
+      end
+
+      it "handles ranges in month" do
+        cron = Cron.new(day_of_month: "6", month: "7-9")
+        expect(cron.schedule_description).to match(/the 6th of July through September/)
+      end
+
       it "handles ranges in days of week"
     end
 

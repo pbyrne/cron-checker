@@ -43,44 +43,15 @@ private
   end
 
   def date_fragment
-    if day_of_month == "*" and month == "*"
-      "every day"
-    else
-      fragments = []
-
-      if day_of_month == "*"
-        fragments << "every day"
-      else
-        fragments << ordinalize(day_of_month)
-      end
-      fragments << "of"
-
-      if month == "*"
-        fragments << "every month"
-      else
-        fragments << Date::MONTHNAMES[month.to_i]
-      end
-
-      fragments.join(" ")
-    end
+    Representations::Date.new({
+      day: day_of_month,
+      month: month,
+    })
   end
 
   def weekday_fragment
     unless day_of_week == "*"
       "and #{Date::DAYNAMES[day_of_week.to_i]}s"
     end
-  end
-
-  # FIXME remove this in deference to what exists in Representations::Base
-  def ordinalize(number)
-    suffix =
-      case number.to_s.split("").last
-      when "1"; "st"
-      when "2"; "nd"
-      when "3"; "rd"
-      else; "th"
-      end
-
-    "#{number}#{suffix}"
   end
 end
