@@ -39,19 +39,7 @@ class Cron
 private
 
   def time_fragment
-    if minute == "*" and hour == "*"
-      "every minute of every hour of"
-    elsif minute == "*"
-      repr = "2013-01-01 #{hour}:00"
-      format = "%l%P" # 01pm
-      "every minute of #{Time.parse(repr).strftime(format)}"
-    elsif hour == "*"
-      "the #{ordinalize(minute)} minute of every hour"
-    else
-      repr = "2013-01-01 #{hour}:#{minute}"
-      format = "%l:%M%P" # 1:23pm
-      "at #{Time.parse(repr).strftime(format)}"
-    end
+    Representations::Time.new(minute: minute, hour: hour)
   end
 
   def date_fragment
@@ -83,6 +71,7 @@ private
     end
   end
 
+  # FIXME remove this in deference to what exists in Representations::Base
   def ordinalize(number)
     suffix =
       case number.to_s.split("").last

@@ -33,7 +33,7 @@ describe Cron do
     it "properly handles wildcard minutes but not hours" do
       cron = Cron.new(minute: "*", hour: "1", day_of_month: "*", month: "*", day_of_week: "*", command: command)
       description = cron.schedule_description
-      expect(description).to match /every minute of  1am/
+      expect(description).to match /every minute of 1am/
     end
 
     it "properly handles widcard hours but not minutes" do
@@ -57,7 +57,24 @@ describe Cron do
       expect(description).to match /Fridays/
     end
 
-    it "properly handles ranges"
+    context "handling ranges" do
+      it "handles ranges in minutes" do
+        cron = Cron.new(minute: "1-5", hour: "2")
+        expect(cron.schedule_description).to match(/the 1st through 5th minutes/)
+      end
+
+      it "handles ranges in hours" do
+        cron = Cron.new(minute: "1", hour: "2-3")
+        expect(cron.schedule_description).to match(/the 1st minute of 2am through 3am/)
+      end
+
+      it "handles ranges in month"
+      it "handles ranges in days of month"
+      it "handles ranges in days of week"
+    end
+
+    it "properly handles lists of numbers"
+
     it "properly handles modulo"
 
     context "knowing keyword schedules" do
