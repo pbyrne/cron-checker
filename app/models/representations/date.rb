@@ -24,6 +24,9 @@ module Representations
       elsif day =~ /-/
         first, last = day.split("-")
         "the #{ordinalize(first)} through #{ordinalize(last)}"
+      elsif day =~ /,/
+        days = day.split(",").map { |d| ordinalize(d) }
+        "the #{days.join(" and ")}"
       else
         "the #{ordinalize(day)}"
       end
@@ -35,6 +38,9 @@ module Representations
       elsif month =~ /-/
         first, last = month.split("-")
         "#{name_of(first)} through #{name_of(last)}"
+      elsif month =~ /,/
+        months = month.split(",").map { |m| name_of(m) }
+        months.join(" and ")
       else
         name_of(month)
       end

@@ -61,6 +61,7 @@ describe Cron do
       it "handles ranges in minutes" do
         cron = Cron.new(minute: "1-5", hour: "2")
         expect(cron.schedule_description).to match(/the 1st through 5th minutes/)
+        expect(cron.schedule_description).to match(/2am/)
       end
 
       it "handles ranges in hours" do
@@ -81,7 +82,29 @@ describe Cron do
       it "handles ranges in days of week"
     end
 
-    it "properly handles lists of numbers"
+    context "properly handles lists of numbers" do
+      it "handles lists in minutes" do
+        cron = Cron.new(minute: "1,2", hour: "2")
+        expect(cron.schedule_description).to match(/the 1st and 2nd minutes/)
+      end
+
+      it "handles lists in hours" do
+        cron = Cron.new(minute: "1", hour: "2,3")
+        expect(cron.schedule_description).to match(/the 1st minute of 2am and 3am/)
+      end
+
+      it "handles lists in days of month" do
+        cron = Cron.new(day_of_month: "4,5", month: "1")
+        expect(cron.schedule_description).to match(/the 4th and 5th of January/)
+      end
+
+      it "handles lists in month" do
+        cron = Cron.new(day_of_month: "6", month: "7,9")
+        expect(cron.schedule_description).to match(/the 6th of July and September/)
+      end
+
+      it "handles lists in days of week"
+    end
 
     it "properly handles modulo"
 

@@ -33,6 +33,9 @@ module Representations
       elsif minute =~ /-/
         first, last = minute.split("-")
         "the #{ordinalize(first)} through #{ordinalize(last)} minutes"
+      elsif minute =~ /,/
+        minutes = minute.split(",").map { |m| ordinalize(m) }
+        "the #{minutes.join(" and ")} minutes"
       else
         "the #{ordinalize(minute)} minute"
       end
@@ -44,6 +47,9 @@ module Representations
       elsif hour =~ /-/
         first, last = hour.split("-")
         "#{bare_hour(first)} through #{bare_hour(last)}"
+      elsif hour =~ /,/
+        hours = hour.split(",").map { |h| bare_hour(h) }
+        hours.join(" and ")
       else
         bare_hour
       end
