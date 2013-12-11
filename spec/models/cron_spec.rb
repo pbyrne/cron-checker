@@ -79,7 +79,10 @@ describe Cron do
         expect(cron.schedule_description).to match(/the 6th of July through September/)
       end
 
-      it "handles ranges in days of week"
+      it "handles ranges in days of week" do
+        cron = Cron.new(day_of_week: "4-5")
+        expect(cron.schedule_description).to match(/and Thursdays through Fridays/)
+      end
     end
 
     context "properly handles lists of numbers" do
@@ -103,7 +106,10 @@ describe Cron do
         expect(cron.schedule_description).to match(/the 6th of July and September/)
       end
 
-      it "handles lists in days of week"
+      it "handles lists in days of week" do
+        cron = Cron.new(day_of_week: "4,5")
+        expect(cron.schedule_description).to match(/Thursdays and Fridays/)
+      end
     end
 
     it "properly handles modulo"

@@ -1,6 +1,3 @@
-require "date"
-require "time"
-
 class Cron
   attr_accessor :command,
     :minute, :hour,
@@ -50,8 +47,8 @@ private
   end
 
   def weekday_fragment
-    unless day_of_week == "*"
-      "and #{Date::DAYNAMES[day_of_week.to_i]}s"
-    end
+    Representations::Weekday.new({
+      weekday: day_of_week,
+    })
   end
 end
