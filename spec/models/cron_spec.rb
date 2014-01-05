@@ -112,7 +112,29 @@ describe Cron do
       end
     end
 
-    it "properly handles modulo"
+    context "properly handles modulo" do
+      it "handles modulo in minutes" do
+        cron = Cron.new(minute: "*/3", hour: "2")
+        expect(cron.schedule_description).to match(/every 3rd minute/)
+      end
+
+      it "handles modulo in hours" do
+        cron = Cron.new(minute: "0", hour: "*/2")
+        expect(cron.schedule_description).to match(/every 2nd hour/)
+      end
+
+      it "handles modulo in days of month" do
+        cron = Cron.new(day_of_month: "*/2", month: "3")
+        expect(cron.schedule_description).to match(/every 2nd day of March/)
+      end
+
+      it "handles modulo in months" do
+        cron = Cron.new(day_of_month: "2", month: "*/4")
+        expect(cron.schedule_description). to match(/the 2nd of every 4th month/)
+      end
+    end
+
+    it "properly handles complex combinations of modulo and ranges"
 
     context "knowing keyword schedules" do
       it "properly handles @reboot" do

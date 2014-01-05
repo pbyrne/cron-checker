@@ -27,6 +27,9 @@ module Representations
       elsif day =~ /,/
         days = day.split(",").map { |d| ordinalize(d) }
         "the #{days.join(" and ")}"
+      elsif day =~ /\//
+        _, d = day.split("/")
+        "every #{ordinalize(d)} day"
       else
         "the #{ordinalize(day)}"
       end
@@ -41,6 +44,9 @@ module Representations
       elsif month =~ /,/
         months = month.split(",").map { |m| name_of(m) }
         months.join(" and ")
+      elsif month =~ /\//
+        _, m = month.split("/")
+        "every #{ordinalize(m)} month"
       else
         name_of(month)
       end

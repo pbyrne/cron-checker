@@ -24,6 +24,7 @@ module Representations
       return false if minute == "*" || hour == "*" # every
       return false if minute =~ /-/ || hour =~ /-/ # range
       return false if minute =~ /,/ || hour =~ /,/ # list
+      return false if minute =~ /\// || hour =~ /\// # modulo
       true
     end
 
@@ -36,6 +37,9 @@ module Representations
       elsif minute =~ /,/
         minutes = minute.split(",").map { |m| ordinalize(m) }
         "the #{minutes.join(" and ")} minutes"
+      elsif minute =~ %r(\*/\d+)
+        _, m = minute.split("/")
+        "every #{ordinalize(m)} minute"
       else
         "the #{ordinalize(minute)} minute"
       end
@@ -50,6 +54,9 @@ module Representations
       elsif hour =~ /,/
         hours = hour.split(",").map { |h| bare_hour(h) }
         hours.join(" and ")
+      elsif hour =~ %r(\*/\d+)
+        _, h = hour.split("/")
+        "every #{ordinalize(h)} hour"
       else
         bare_hour
       end
