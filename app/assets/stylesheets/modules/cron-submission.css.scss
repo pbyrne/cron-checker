@@ -1,0 +1,23 @@
+.cron-submission {
+  text-align: center;
+
+  %inherit-font {
+    font: {
+      family: inherit;
+      size: 100%;
+    }
+  }
+
+  // FIXME: I can't get min-width to have any effect. Narrow screens don't honor this value. Confirmed in Chrome/Safari.
+  input {
+    @extend %inherit-font;
+    width: 70%;
+    min-width: 10em;
+  }
+
+  button {
+    @extend %inherit-font;
+    width: 15%;
+    min-width: 5em;
+  }
+}

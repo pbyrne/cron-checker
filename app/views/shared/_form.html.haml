@@ -1,3 +1,4 @@
-= form_tag check_path, method: :get do
-  = text_field_tag :statement, params[:statement]
-  = submit_tag "Submit"
+.cron-submission
+  = form_tag check_path, method: :get do
+    = text_field_tag :statement, params[:statement], placeholder: "Your cron statement…", required: true
+    = button_tag "Submit"

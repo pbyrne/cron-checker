@@ -1,0 +1,5 @@
+@mixin box-color($color) {
+  background: lighten($color, 15%);
+  border: 1px solid $color;
+}
+

@@ -29,7 +29,7 @@ class Cron
         end
       Cron.new(options.merge(command: command, day_of_week: "*")).schedule_description
     else
-      "#{time_fragment} #{date_fragment} #{weekday_fragment}"
+      "#{time_fragment} #{date_fragment} #{weekday_fragment}".strip
     end
   end
 

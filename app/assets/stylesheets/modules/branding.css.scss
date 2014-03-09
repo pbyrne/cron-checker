@@ -1,0 +1,14 @@
+.branding {
+  font-family: Consolas, "Courier New", Courier, monospace;
+  text-align: center;
+
+  a {
+    color: $dark;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
