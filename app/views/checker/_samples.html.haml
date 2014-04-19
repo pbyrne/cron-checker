@@ -1,0 +1,6 @@
+%h2 Some Examples
+
+%ul.examples
+  %li= link_to_cron("0 0 * * * some_report.sh")
+  %li= link_to_cron("@reboot cd ~/bin/some_daemon")
+  %li= link_to_cron("0 0 1 */2 * payroll.sh")

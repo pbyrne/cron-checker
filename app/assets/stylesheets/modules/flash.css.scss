@@ -1,0 +1,16 @@
+%flash {
+  color: white;
+  margin: 1em auto;
+  padding: 0 1em;
+  text-shadow: $dark 2px 2px 2px;
+}
+
+.flash-error {
+  @extend %flash;
+  @include box-color($error);
+}
+
+.flash-success {
+  @extend %flash;
+  @include box-color($success);
+}

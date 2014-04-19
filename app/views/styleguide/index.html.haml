@@ -1,0 +1,31 @@
+%h1 Text styles
+
+%p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor consequat felis quis dapibus. Sed et tempus neque. Cras vitae dolor rutrum, tempor purus et, auctor nisl. Aliquam interdum ut ante in commodo. Ut quis aliquam purus.
+
+%h1 Common components
+
+%h2 Header
+
+= render 'shared/header'
+
+%h2 Footer
+
+= render "shared/footer"
+
+%h2 Flash
+
+- messages = { error: "Something wrong wrong!",
+  success: "Something went right!" }
+= render "shared/flash", flash: messages
+
+%h2 Form
+
+= render "shared/form"
+
+%h2 Result
+
+= render "checker/cron", cron: CronParser.new("0 0 * * * some_report.sh").cron
+
+%h2 Samples
+
+= render "checker/samples"

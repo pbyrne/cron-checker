@@ -57,6 +57,11 @@ describe Cron do
       expect(description).to match /Fridays/
     end
 
+    it "never ends in whitespace" do
+      cron = Cron.new(minute: "*", hour: "*", day_of_month: "*", month: "2", day_of_week: "*", command: command)
+      expect(cron.schedule_description).to_not end_with(" ")
+    end
+
     context "handling ranges" do
       it "handles ranges in minutes" do
         cron = Cron.new(minute: "1-5", hour: "2")
