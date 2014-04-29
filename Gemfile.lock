@@ -58,6 +58,7 @@ GEM
     mini_portile (0.5.3)
     minitest (5.3.3)
     multi_json (1.9.2)
+    newrelic_rpm (3.7.3.204)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
     polyglot (0.3.4)
@@ -141,6 +142,7 @@ DEPENDENCIES
   foreman
   haml
   jbuilder (~> 2.0.4)
+  newrelic_rpm
   rails (= 4.1.0)
   rails_12factor
   rspec-rails

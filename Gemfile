@@ -5,6 +5,7 @@ ruby "2.1.1"
 gem 'rails', '4.1.0'
 gem 'haml'
 gem 'unicorn'
+gem 'newrelic_rpm'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
