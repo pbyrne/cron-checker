@@ -5,7 +5,7 @@
     or #{link_to "submit an issue", "https://github.com/pbyrne/cron-checker/issues"} if something is amiss.
   %p Copyright &copy; 2009–#{Date.today.year} #{link_to "Patrick Byrne", "http://patrickbyrne.net"}.
 
-- if ENV["GUAGES_KEY"]
+- if ENV["GAUGES_KEY"]
   :javascript
     var _gauges = _gauges || [];
     (function() {
@@ -13,7 +13,7 @@
       t.type  = 'text/javascript';
       t.async = true;
       t.id    = 'gauges-tracker';
-      t.setAttribute('data-site-id', '#{ENV["GUAGES_KEY"]}');
+      t.setAttribute('data-site-id', '#{ENV["GAUGES_KEY"]}');
       t.src = '//secure.gaug.es/track.js';
       var s = document.getElementsByTagName('script')[0];
       s.parentNode.insertBefore(t, s);
