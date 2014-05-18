@@ -31,6 +31,7 @@ module Representations
     end
 
     def plural_name_of(value)
+      value = "0" if value == "7" # can accept either "0" or "7" as Sunday
       "#{::Date::DAYNAMES[value.to_i]}s"
     end
   end

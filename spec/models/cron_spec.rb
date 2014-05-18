@@ -57,6 +57,13 @@ describe Cron do
       expect(description).to match /Fridays/
     end
 
+    it "accepts either 0 or 7 for Sunday" do
+      %w(0 7).each do |value|
+        cron = Cron.new(day_of_week: value)
+        expect(cron.schedule_description).to match /Sundays/
+      end
+    end
+
     it "never ends in whitespace" do
       cron = Cron.new(minute: "*", hour: "*", day_of_month: "*", month: "2", day_of_week: "*", command: command)
       expect(cron.schedule_description).to_not end_with(" ")
