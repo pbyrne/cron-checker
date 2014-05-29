@@ -5,7 +5,7 @@
     %title CronChecker
     = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
     = csrf_meta_tags
-    %meta{name: "google-site-verification", content: "XsTtBFfW_5jcRrEfNL0lHtPU-_qaLzqRvfRrYklrFYw"}
+    %meta{name: "google-site-verification", content: ENV['GOOGLE_WEBMASTER_VERIFICATION']}
 
   %body
     = render "shared/header"
