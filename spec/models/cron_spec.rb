@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe Cron do
   let(:command) { "./foo" }

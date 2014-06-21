@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe CheckerHelper do
   describe "#link_to_cron(statement)" do
