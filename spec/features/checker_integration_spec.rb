@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe "checking cron syntax" do
   let(:command) { "./foo" }
