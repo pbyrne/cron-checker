@@ -15,7 +15,7 @@ gem 'rails_12factor', group: :production
 
 group :development, :test do
   gem 'capybara'
-  gem 'rspec-rails', '< 3' # for now, looks like some breaking changes in rspec 3
+  gem 'rspec-rails'
   gem 'simplecov', require: false
   gem 'foreman'
 end
