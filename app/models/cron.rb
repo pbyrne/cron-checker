@@ -29,7 +29,7 @@ class Cron
         end
       Cron.new(options.merge(command: command, day_of_week: "*")).schedule_description
     else
-      "#{time_fragment} #{date_fragment} #{weekday_fragment}".strip
+      "#{time_fragment} #{date_fragment}".strip
     end
   end
 
@@ -43,6 +43,7 @@ private
     Representations::Date.new({
       day: day_of_month,
       month: month,
+      weekday: day_of_week,
     })
   end
 
@@ -51,4 +52,5 @@ private
       weekday: day_of_week,
     })
   end
+
 end

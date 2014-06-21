@@ -52,9 +52,8 @@ describe Cron do
       cron = Cron.new(minute: "1", hour: "2", day_of_month: "3", month: "4", day_of_week: "5", command: command)
       description = cron.schedule_description
       expect(description).to match /2:01/
-      expect(description).to match /3rd of/
+      expect(description).to match /3rd of and Fridays in/
       expect(description).to match /April/
-      expect(description).to match /Fridays/
     end
 
     it "accepts either 0 or 7 for Sunday" do
@@ -92,8 +91,8 @@ describe Cron do
       end
 
       it "handles ranges in days of week" do
-        cron = Cron.new(day_of_week: "4-5")
-        expect(cron.schedule_description).to match(/and Thursdays through Fridays/)
+        cron = Cron.new(day_of_month: "*", day_of_week: "4-5")
+        expect(cron.schedule_description).to match(/Thursdays through Fridays in/)
       end
     end
 
@@ -120,7 +119,7 @@ describe Cron do
 
       it "handles lists in days of week" do
         cron = Cron.new(day_of_week: "4,5")
-        expect(cron.schedule_description).to match(/Thursdays and Fridays/)
+        expect(cron.schedule_description).to match(/Thursdays and Fridays in/)
       end
     end
 
