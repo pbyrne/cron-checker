@@ -13,13 +13,10 @@ require 'capybara/rspec'
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
 RSpec.configure do |config|
-  # ## Mock Framework
-  #
-  # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
-  #
-  # config.mock_with :mocha
-  # config.mock_with :flexmock
-  # config.mock_with :rr
+  # Blow up immediately upon reaching a depcreated method
+  config.raise_errors_for_deprecations!
+  # so I don't have to specify the type of spec in each file
+  config.infer_spec_type_from_file_location!
 
   # If true, the base class of anonymous controllers will be inferred
   # automatically. This will be the default behavior in future versions of
