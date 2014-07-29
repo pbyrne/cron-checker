@@ -36,13 +36,13 @@ describe Cron do
       expect(description).to match /every minute of 1am/
     end
 
-    it "properly handles widcard hours but not minutes" do
+    it "properly handles wildcard hours but not minutes" do
       cron = Cron.new(minute: "2", hour: "*", day_of_month: "*", month: "*", day_of_week: "*", command: command)
       description = cron.schedule_description
       expect(description).to match /the 2nd minute of every hour/
     end
 
-    it "properly handles widcard days but not months" do
+    it "properly handles wildcard days but not months" do
       cron = Cron.new(minute: "*", hour: "*", day_of_month: "*", month: "2", day_of_week: "*", command: command)
       description = cron.schedule_description
       expect(description).to match /every day of February/
