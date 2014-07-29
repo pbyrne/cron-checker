@@ -143,6 +143,11 @@ describe Cron do
         cron = Cron.new(day_of_month: "2", month: "*/4")
         expect(cron.schedule_description). to match(/the 2nd of every 4th month/)
       end
+
+      it "handles modulo in days of week" do
+        cron = Cron.new(day_of_week: "*/2")
+        expect(cron.schedule_description).to match(/every 2nd weekday/)
+      end
     end
 
     it "properly handles complex combinations of modulo and ranges"

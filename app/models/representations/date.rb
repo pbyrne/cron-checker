@@ -64,6 +64,9 @@ module Representations
             plural_weekday_name(day)
           end
           days.join(" and ")
+        elsif weekday =~ /\//
+          _, d = weekday.split("/")
+          "every #{ordinalize(d)} weekday"
         else
           plural_weekday_name(weekday)
         end
