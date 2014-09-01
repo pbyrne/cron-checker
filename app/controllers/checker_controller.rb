@@ -5,8 +5,8 @@ class CheckerController < ApplicationController
   def show
     @cron = CronParser.new(params[:statement]).cron
   rescue CronParser::InvalidStatement
-    flash[:error] = "Invalid cron statement '#{params[:statement]}'."
-    redirect_to root_path
+    flash[:error] = "Unrecognized cron statement '#{params[:statement]}'."
+    redirect_to root_path(statement: params[:statement])
   rescue CronParser::MissingStatement
     flash[:error] = "You must provide a cron statement."
     redirect_to root_path
