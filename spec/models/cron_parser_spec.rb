@@ -52,7 +52,7 @@ describe CronParser do
     end
 
     it "raises an exception for an invalid statement" do
-      subject.statement = "asdf"
+      subject.statement = invalid_statement
       expect { subject.cron }.to raise_error(CronParser::InvalidStatement)
     end
 
@@ -61,6 +61,23 @@ describe CronParser do
       expect { subject.cron }.to raise_error(CronParser::MissingStatement)
       subject.statement = ""
       expect { subject.cron }.to raise_error(CronParser::MissingStatement)
+    end
+  end
+
+  context "#error_message" do
+    it "is nil for a valid cron statement" do
+      expect(CronParser.new(statement).error_message).to be_nil
+    end
+
+    it "has an appropriate message for an invalid cron statement" do
+      error_message = CronParser.new(invalid_statement).error_message
+      expect(error_message).to match(/unrecognized cron statement/i)
+      expect(error_message).to match(invalid_statement)
+    end
+
+    it "has an appropriate message for a missing cron statement" do
+      error_message = CronParser.new(nil).error_message
+      expect(error_message).to match(/you must provide a cron statement/i)
     end
   end
 end
