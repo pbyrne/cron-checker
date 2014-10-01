@@ -58,7 +58,7 @@ module Representations
       fragment =
         if weekday =~ /-/
           first, last = weekday.split("-")
-          "#{plural_weekday_name(first)} through #{plural_weekday_name(last)} in"
+          "#{plural_weekday_name(first)} through #{plural_weekday_name(last)}"
         elsif weekday =~ /,/
           days = weekday.split(",").map do |day|
             plural_weekday_name(day)
