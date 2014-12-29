@@ -4,7 +4,7 @@ ruby "2.1.5"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'haml'
 gem 'rails', '4.1.8'
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails', '~> 5.0.1'
 gem 'unicorn'
 
 group :production do

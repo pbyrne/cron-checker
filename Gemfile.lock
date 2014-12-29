@@ -98,12 +98,13 @@ GEM
       rspec-mocks (~> 3.1.0)
       rspec-support (~> 3.1.0)
     rspec-support (3.1.2)
-    sass (3.2.19)
-    sass-rails (4.0.5)
+    sass (3.4.9)
+    sass-rails (5.0.1)
       railties (>= 4.0.0, < 5.0)
-      sass (~> 3.2.2)
-      sprockets (~> 2.8, < 3.0)
-      sprockets-rails (~> 2.0)
+      sass (~> 3.1)
+      sprockets (>= 2.8, < 4.0)
+      sprockets-rails (>= 2.0, < 4.0)
+      tilt (~> 1.1)
     simplecov (0.9.1)
       docile (~> 1.1.0)
       multi_json (~> 1.0)
@@ -141,6 +142,6 @@ DEPENDENCIES
   rails (= 4.1.8)
   rails_12factor
   rspec-rails
-  sass-rails (~> 4.0.0)
+  sass-rails (~> 5.0.1)
   simplecov
   unicorn
